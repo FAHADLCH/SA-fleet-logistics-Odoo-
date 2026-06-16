@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_odotrans_event_user,odotrans.event.user,model_odotrans_event,group_odotrans_user,1,0,0,0
+access_odotrans_event_manager,odotrans.event.manager,model_odotrans_event,group_odotrans_manager,1,1,1,1
+access_odotrans_event_delivery_user,odotrans.event.delivery.user,model_odotrans_event_delivery,group_odotrans_user,1,0,0,0
+access_odotrans_event_delivery_manager,odotrans.event.delivery.manager,model_odotrans_event_delivery,group_odotrans_manager,1,1,1,1
+access_odotrans_event_subscription_user,odotrans.event.subscription.user,model_odotrans_event_subscription,group_odotrans_user,1,0,0,0
+access_odotrans_event_subscription_manager,odotrans.event.subscription.manager,model_odotrans_event_subscription,group_odotrans_manager,1,1,1,1

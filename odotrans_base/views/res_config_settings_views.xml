@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_odotrans" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.odotrans</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="ODOTRANS" string="ODOTRANS" name="odotrans_base"
+                     logo="/odotrans_base/static/description/icon.png">
+                    <block title="Map &amp; Routing Provider"
+                           id="odotrans_map_provider_block">
+                        <setting string="Provider"
+                                 help="Routing/geocoding provider used across ODOTRANS.">
+                            <field name="odotrans_map_provider"/>
+                        </setting>
+                        <setting string="OSRM"
+                                 invisible="odotrans_map_provider != 'osrm'">
+                            <div class="content-group">
+                                <label for="odotrans_osrm_base_url" string="OSRM Base URL"/>
+                                <field name="odotrans_osrm_base_url"
+                                       placeholder="http://osrm:5000"/>
+                                <label for="odotrans_osrm_nominatim_url" string="Nominatim URL"/>
+                                <field name="odotrans_osrm_nominatim_url"
+                                       placeholder="http://nominatim:8080"/>
+                            </div>
+                        </setting>
+                        <setting string="Google"
+                                 invisible="odotrans_map_provider != 'google'">
+                            <field name="odotrans_google_api_key" password="True"
+                                   placeholder="AIza..."/>
+                        </setting>
+                        <setting string="Mapbox"
+                                 invisible="odotrans_map_provider != 'mapbox'">
+                            <field name="odotrans_mapbox_access_token" password="True"
+                                   placeholder="pk.eyJ..."/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

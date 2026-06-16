@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pod_list" model="ir.ui.view">
+        <field name="name">odotrans.pod.list</field>
+        <field name="model">odotrans.pod</field>
+        <field name="arch" type="xml">
+            <list string="Proof of Delivery" decoration-success="state == 'confirmed'"
+                  decoration-danger="state == 'rejected'">
+                <field name="name"/>
+                <field name="shipment_id"/>
+                <field name="stop_id"/>
+                <field name="method"/>
+                <field name="received_by"/>
+                <field name="captured_at"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pod_form" model="ir.ui.view">
+        <field name="name">odotrans.pod.form</field>
+        <field name="model">odotrans.pod</field>
+        <field name="arch" type="xml">
+            <form string="Proof of Delivery">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" readonly="1"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="stop_id"/>
+                            <field name="shipment_id" readonly="1"/>
+                            <field name="driver_id"/>
+                            <field name="trip_ref"/>
+                        </group>
+                        <group>
+                            <field name="method"/>
+                            <field name="received_by"/>
+                            <field name="captured_at"/>
+                            <field name="otp_code" invisible="method != 'otp'"/>
+                            <field name="otp_verified" invisible="method != 'otp'"/>
+                        </group>
+                    </group>
+                    <group string="Evidence">
+                        <field name="signature" widget="image" invisible="method != 'signature'"/>
+                        <field name="photo_ids" widget="many2many_binary" invisible="method != 'photo'"/>
+                    </group>
+                    <field name="note" placeholder="Notes..."/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pod" model="ir.actions.act_window">
+        <field name="name">Proof of Delivery</field>
+        <field name="res_model">odotrans.pod</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

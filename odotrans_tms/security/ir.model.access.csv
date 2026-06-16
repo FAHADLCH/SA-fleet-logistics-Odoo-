@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shipment_user,shipment.user,model_odotrans_shipment,group_odotrans_tms_user,1,1,1,0
+access_shipment_manager,shipment.manager,model_odotrans_shipment,group_odotrans_tms_manager,1,1,1,1
+access_leg_user,leg.user,model_odotrans_leg,group_odotrans_tms_user,1,1,1,1
+access_leg_manager,leg.manager,model_odotrans_leg,group_odotrans_tms_manager,1,1,1,1
+access_stop_user,stop.user,model_odotrans_stop,group_odotrans_tms_user,1,1,1,1
+access_stop_manager,stop.manager,model_odotrans_stop,group_odotrans_tms_manager,1,1,1,1

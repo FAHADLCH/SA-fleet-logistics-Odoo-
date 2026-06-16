@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_odotrans_dispatcher" model="res.groups">
+        <field name="name">ODOTRANS / Dispatcher</field>
+        <field name="category_id" ref="odotrans_base.module_category_odotrans"/>
+        <field name="implied_ids" eval="[(4, ref('odotrans_tms.group_odotrans_tms_user'))]"/>
+    </record>
+
+    <record id="rule_trip_company" model="ir.rule">
+        <field name="name">Trip: multi-company</field>
+        <field name="model_id" ref="model_odotrans_trip"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True"/>
+    </record>
+
+    <!-- Drivers see only trips assigned to them -->
+    <record id="rule_trip_driver_own" model="ir.rule">
+        <field name="name">Trip: driver own only</field>
+        <field name="model_id" ref="model_odotrans_trip"/>
+        <field name="groups" eval="[(4, ref('odotrans_fleet.group_odotrans_driver'))]"/>
+        <field name="domain_force">[('driver_id.user_id', '=', user.id)]</field>
+    </record>
+</odoo>

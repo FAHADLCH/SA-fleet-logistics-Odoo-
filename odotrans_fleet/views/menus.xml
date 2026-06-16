@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_fleet" name="Fleet"
+              parent="odotrans_tms.menu_odotrans_root" sequence="20"/>
+    <menuitem id="menu_fleet_vehicle" name="Vehicles"
+              parent="menu_odotrans_fleet" action="action_odotrans_vehicle" sequence="10"/>
+    <menuitem id="menu_fleet_driver" name="Drivers"
+              parent="menu_odotrans_fleet" action="action_driver" sequence="20"/>
+</odoo>

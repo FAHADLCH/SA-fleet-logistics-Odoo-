@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================
+         ODOTRANS Fleet — Demo data
+         A demo brand/model, vehicles and drivers ready for dispatch.
+         ============================================================ -->
+
+    <record id="demo_brand_odotrans" model="fleet.vehicle.model.brand">
+        <field name="name">ODOTRANS Demo Trucks</field>
+    </record>
+
+    <record id="demo_model_rigid" model="fleet.vehicle.model">
+        <field name="name">Rigid 18T</field>
+        <field name="brand_id" ref="demo_brand_odotrans"/>
+    </record>
+    <record id="demo_model_van" model="fleet.vehicle.model">
+        <field name="name">City Van 3.5T</field>
+        <field name="brand_id" ref="demo_brand_odotrans"/>
+    </record>
+
+    <!-- Vehicles -->
+    <record id="demo_vehicle_truck1" model="fleet.vehicle">
+        <field name="model_id" ref="demo_model_rigid"/>
+        <field name="license_plate">ODT-1001</field>
+        <field name="odotrans_enabled" eval="True"/>
+        <field name="odotrans_status">available</field>
+        <field name="capacity_weight_kg">18000</field>
+        <field name="capacity_volume_m3">42</field>
+        <field name="capacity_pallets">16</field>
+    </record>
+    <record id="demo_vehicle_truck2" model="fleet.vehicle">
+        <field name="model_id" ref="demo_model_rigid"/>
+        <field name="license_plate">ODT-1002</field>
+        <field name="odotrans_enabled" eval="True"/>
+        <field name="odotrans_status">available</field>
+        <field name="capacity_weight_kg">18000</field>
+        <field name="capacity_volume_m3">42</field>
+        <field name="capacity_pallets">16</field>
+    </record>
+    <record id="demo_vehicle_van1" model="fleet.vehicle">
+        <field name="model_id" ref="demo_model_van"/>
+        <field name="license_plate">ODT-2001</field>
+        <field name="odotrans_enabled" eval="True"/>
+        <field name="odotrans_status">available</field>
+        <field name="capacity_weight_kg">3500</field>
+        <field name="capacity_volume_m3">14</field>
+        <field name="capacity_pallets">4</field>
+    </record>
+
+    <!-- Drivers -->
+    <record id="demo_driver_bilal" model="odotrans.driver">
+        <field name="name">Bilal Ahmed</field>
+        <field name="phone">+92 300 1112233</field>
+        <field name="license_number">LHR-DRV-4471</field>
+        <field name="license_expiry" eval="(DateTime.today() + timedelta(days=540)).strftime('%Y-%m-%d')"/>
+        <field name="status">available</field>
+        <field name="default_vehicle_id" ref="demo_vehicle_truck1"/>
+    </record>
+    <record id="demo_driver_sana" model="odotrans.driver">
+        <field name="name">Sana Khan</field>
+        <field name="phone">+92 301 4455667</field>
+        <field name="license_number">LHR-DRV-5588</field>
+        <field name="license_expiry" eval="(DateTime.today() + timedelta(days=720)).strftime('%Y-%m-%d')"/>
+        <field name="status">available</field>
+        <field name="default_vehicle_id" ref="demo_vehicle_van1"/>
+    </record>
+</odoo>

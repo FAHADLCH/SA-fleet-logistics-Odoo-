@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:15
+    container_name: sa_fl_db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - sa_fl_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  odoo:
+    image: odoo:18
+    container_name: sa_fl_odoo
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+      - "8072:8072"   # longpolling / live chat
+    environment:
+      HOST: db
+      USER: odoo
+      PASSWORD: odoo
+    volumes:
+      - sa_fl_odoo_data:/var/lib/odoo
+      # Mount the whole repository as an addons path; Odoo only scans folders
+      # that contain a __manifest__.py, so the repo root files are ignored.
+      - ./:/mnt/extra-addons:ro
+      - ./odoo.conf:/etc/odoo/odoo.conf:ro
+    command: >
+      odoo
+      -c /etc/odoo/odoo.conf
+      -d sa_demo
+      -i sa_fleet_logistics
+
+volumes:
+  sa_fl_pgdata:
+  sa_fl_odoo_data:

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_trip_list" model="ir.ui.view">
+        <field name="name">odotrans.trip.list</field>
+        <field name="model">odotrans.trip</field>
+        <field name="arch" type="xml">
+            <list string="Trips" decoration-muted="state in ('completed','cancelled')"
+                  decoration-warning="state == 'exception'">
+                <field name="name"/>
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+                <field name="scheduled_start"/>
+                <field name="stop_count"/>
+                <field name="total_weight_kg" optional="show"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'completed'"
+                       decoration-info="state in ('assigned','dispatched')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_trip_kanban" model="ir.ui.view">
+        <field name="name">odotrans.trip.kanban</field>
+        <field name="model">odotrans.trip</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="name"/>
+                <field name="vehicle_id"/>
+                <field name="driver_id"/>
+                <field name="stop_count"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <div class="o_kanban_record_title">
+                                <strong><field name="name"/></strong>
+                            </div>
+                            <div><field name="vehicle_id"/></div>
+                            <div><field name="driver_id"/></div>
+                            <div class="text-muted"><field name="stop_count"/> stops</div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_trip_form" model="ir.ui.view">
+        <field name="name">odotrans.trip.form</field>
+        <field name="model">odotrans.trip</field>
+        <field name="arch" type="xml">
+            <form string="Trip">
+                <header>
+                    <button name="action_dispatch" type="object" string="Dispatch"
+                            class="oe_highlight" invisible="state != 'assigned'"/>
+                    <button name="action_start" type="object" string="Start"
+                            invisible="state != 'dispatched'"/>
+                    <button name="action_complete" type="object" string="Complete"
+                            class="oe_highlight" invisible="state not in ('in_progress','exception')"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('completed','cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,assigned,dispatched,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="vehicle_id"/>
+                            <field name="driver_id"/>
+                            <field name="route_plan_ref" readonly="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_start"/>
+                            <field name="scheduled_end"/>
+                            <field name="actual_start" readonly="1"/>
+                            <field name="actual_end" readonly="1"/>
+                        </group>
+                        <group string="Load">
+                            <field name="total_weight_kg" readonly="1"/>
+                            <field name="total_volume_m3" readonly="1"/>
+                            <field name="stop_count" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Manifest" name="manifest">
+                            <field name="manifest_id" readonly="1"/>
+                            <field name="stop_ids">
+                                <list>
+                                    <field name="sequence"/>
+                                    <field name="shipment_id"/>
+                                    <field name="stop_type"/>
+                                    <field name="partner_id"/>
+                                    <field name="planned_eta"/>
+                                    <field name="state" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_trip" model="ir.actions.act_window">
+        <field name="name">Trips</field>
+        <field name="res_model">odotrans.trip</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_driver_user,driver.user,model_odotrans_driver,odotrans_base.group_odotrans_user,1,0,0,0
+access_driver_manager,driver.manager,model_odotrans_driver,group_odotrans_fleet_manager,1,1,1,1
+access_driver_self,driver.self,model_odotrans_driver,group_odotrans_driver,1,0,0,0

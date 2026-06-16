@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dock_list" model="ir.ui.view">
+        <field name="name">odotrans.dock.list</field>
+        <field name="model">odotrans.dock</field>
+        <field name="arch" type="xml">
+            <list string="Docks" editable="bottom">
+                <field name="warehouse_id"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="direction"/>
+                <field name="status" widget="badge"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_dock" model="ir.actions.act_window">
+        <field name="name">Docks</field>
+        <field name="res_model">odotrans.dock</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <record id="view_bay_list" model="ir.ui.view">
+        <field name="name">odotrans.bay.list</field>
+        <field name="model">odotrans.bay</field>
+        <field name="arch" type="xml">
+            <list string="Bays" editable="bottom">
+                <field name="warehouse_id"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="capacity_pallets"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_bay" model="ir.actions.act_window">
+        <field name="name">Staging Bays</field>
+        <field name="res_model">odotrans.bay</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

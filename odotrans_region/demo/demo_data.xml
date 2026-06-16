@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- North America: imperial units, FMCSA HOS, US sales tax -->
+        <record id="region_na" model="odotrans.region">
+            <field name="name">North America</field>
+            <field name="code">NA</field>
+            <field name="sequence">10</field>
+            <field name="measurement_system">imperial</field>
+            <field name="distance_unit">mi</field>
+            <field name="temperature_unit">f</field>
+            <field name="drive_side">right</field>
+            <field name="currency_id" ref="base.USD"/>
+            <field name="compliance_profile">us_fmcsa</field>
+            <field name="tax_regime">us_sales_tax</field>
+            <field name="max_driving_hours_day">11.0</field>
+            <field name="max_driving_hours_week">60.0</field>
+            <field name="max_continuous_driving_min">480</field>
+            <field name="required_break_min">30</field>
+            <field name="emission_factor_kg_per_km">0.71</field>
+            <field name="enable_customs" eval="True"/>
+            <field name="enable_eld" eval="True"/>
+            <field name="country_ids" eval="[(6, 0, [ref('base.us'), ref('base.ca'), ref('base.mx')])]"/>
+        </record>
+
+        <!-- Europe: metric, tachograph / Mobility Package, EU VAT -->
+        <record id="region_eu" model="odotrans.region">
+            <field name="name">Europe</field>
+            <field name="code">EU</field>
+            <field name="sequence">20</field>
+            <field name="measurement_system">metric</field>
+            <field name="distance_unit">km</field>
+            <field name="temperature_unit">c</field>
+            <field name="drive_side">right</field>
+            <field name="currency_id" ref="base.EUR"/>
+            <field name="compliance_profile">eu_tacho</field>
+            <field name="tax_regime">eu_vat</field>
+            <field name="max_driving_hours_day">9.0</field>
+            <field name="max_driving_hours_week">56.0</field>
+            <field name="max_continuous_driving_min">270</field>
+            <field name="required_break_min">45</field>
+            <field name="emission_factor_kg_per_km">0.62</field>
+            <field name="enable_customs" eval="True"/>
+            <field name="enable_eld" eval="True"/>
+            <field name="country_ids" eval="[(6, 0, [ref('base.de'), ref('base.fr'), ref('base.nl'), ref('base.es'), ref('base.it'), ref('base.pl')])]"/>
+        </record>
+
+        <!-- GCC / Middle East: metric, GCC VAT -->
+        <record id="region_gcc" model="odotrans.region">
+            <field name="name">GCC &amp; Middle East</field>
+            <field name="code">GCC</field>
+            <field name="sequence">30</field>
+            <field name="measurement_system">metric</field>
+            <field name="distance_unit">km</field>
+            <field name="temperature_unit">c</field>
+            <field name="drive_side">right</field>
+            <field name="currency_id" ref="base.AED"/>
+            <field name="compliance_profile">gcc</field>
+            <field name="tax_regime">gcc_vat</field>
+            <field name="max_driving_hours_day">10.0</field>
+            <field name="max_driving_hours_week">60.0</field>
+            <field name="max_continuous_driving_min">300</field>
+            <field name="required_break_min">30</field>
+            <field name="emission_factor_kg_per_km">0.68</field>
+            <field name="enable_customs" eval="True"/>
+            <field name="enable_cold_chain" eval="True"/>
+            <field name="country_ids" eval="[(6, 0, [ref('base.ae'), ref('base.sa'), ref('base.qa'), ref('base.kw'), ref('base.om'), ref('base.bh')])]"/>
+        </record>
+
+        <!-- South Asia / India: metric, AIS-140 / GST E-way -->
+        <record id="region_in" model="odotrans.region">
+            <field name="name">South Asia</field>
+            <field name="code">SA</field>
+            <field name="sequence">40</field>
+            <field name="measurement_system">metric</field>
+            <field name="distance_unit">km</field>
+            <field name="temperature_unit">c</field>
+            <field name="drive_side">left</field>
+            <field name="currency_id" ref="base.INR"/>
+            <field name="compliance_profile">india</field>
+            <field name="tax_regime">india_gst</field>
+            <field name="max_driving_hours_day">10.0</field>
+            <field name="max_driving_hours_week">60.0</field>
+            <field name="max_continuous_driving_min">300</field>
+            <field name="required_break_min">30</field>
+            <field name="emission_factor_kg_per_km">0.74</field>
+            <field name="enable_eld" eval="True"/>
+            <field name="country_ids" eval="[(6, 0, [ref('base.in'), ref('base.pk'), ref('base.bd'), ref('base.lk')])]"/>
+        </record>
+
+        <!-- Global default fallback -->
+        <record id="region_global" model="odotrans.region">
+            <field name="name">Global Default</field>
+            <field name="code">GLB</field>
+            <field name="sequence">99</field>
+            <field name="measurement_system">metric</field>
+            <field name="distance_unit">km</field>
+            <field name="temperature_unit">c</field>
+            <field name="drive_side">right</field>
+            <field name="compliance_profile">generic</field>
+            <field name="tax_regime">generic</field>
+            <field name="emission_factor_kg_per_km">0.62</field>
+        </record>
+
+        <!-- Assign a sensible default region to the main company -->
+        <record id="base.main_company" model="res.company">
+            <field name="odotrans_region_id" ref="region_global"/>
+        </record>
+    </data>
+</odoo>

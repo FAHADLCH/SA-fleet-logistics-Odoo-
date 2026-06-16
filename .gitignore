@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Odoo
+*.log
+.odoorc
+data_dir/
+filestore/
+
+# Local config with credentials (use odoo.conf.example as a template)
+odoo.conf
+
+# Local-only working files (not part of the published app)
+deploy/
+ODOTRANS_PITCH.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Environment
+.env
+.env.*
+venv/
+.venv/

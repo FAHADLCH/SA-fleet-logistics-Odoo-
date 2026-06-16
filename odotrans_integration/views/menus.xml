@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_integration_root"
+              name="Integrations"
+              parent="odotrans_tms.menu_odotrans_root"
+              sequence="700"
+              groups="odotrans_base.group_odotrans_user"/>
+
+    <menuitem id="menu_integration_connector"
+              name="Connectors"
+              parent="menu_odotrans_integration_root"
+              action="action_connector"
+              sequence="10"/>
+
+    <menuitem id="menu_integration_webhook"
+              name="Webhooks"
+              parent="menu_odotrans_integration_root"
+              action="action_webhook"
+              sequence="20"/>
+
+    <menuitem id="menu_integration_edi"
+              name="EDI Documents"
+              parent="menu_odotrans_integration_root"
+              action="action_edi"
+              sequence="30"/>
+</odoo>

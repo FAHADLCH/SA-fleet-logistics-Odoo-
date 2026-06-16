@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Application category -->
+    <record id="module_category_odotrans" model="ir.module.category">
+        <field name="name">ODOTRANS</field>
+        <field name="description">Logistics Operating System</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- Foundational groups. Domain addons add their own role groups
+         (Dispatcher, Fleet Manager, Driver, ...) implying group_odotrans_user. -->
+    <record id="group_odotrans_user" model="res.groups">
+        <field name="name">ODOTRANS / User</field>
+        <field name="category_id" ref="module_category_odotrans"/>
+        <field name="comment">Operational access to ODOTRANS contexts.</field>
+    </record>
+
+    <record id="group_odotrans_manager" model="res.groups">
+        <field name="name">ODOTRANS / Administrator</field>
+        <field name="category_id" ref="module_category_odotrans"/>
+        <field name="implied_ids" eval="[(4, ref('group_odotrans_user'))]"/>
+        <field name="users" eval="[(4, ref('base.user_admin'))]"/>
+        <field name="comment">Full configuration access: providers, subscriptions, channels.</field>
+    </record>
+</odoo>

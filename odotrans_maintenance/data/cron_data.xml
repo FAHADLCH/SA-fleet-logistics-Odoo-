@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="cron_pm_due_work_orders" model="ir.cron">
+        <field name="name">ODOTRANS: Generate due preventive work orders</field>
+        <field name="model_id" ref="model_odotrans_pm_plan"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_generate_due_work_orders()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sub_route_on_trip_dispatched" model="odotrans.event.subscription">
+        <field name="name">Route ← Trip dispatched</field>
+        <field name="topic">trip.dispatched</field>
+        <field name="handler_model">odotrans.optimization.run</field>
+        <field name="handler_method">_odotrans_on_trip_dispatched</field>
+        <field name="channel">root.odotrans.optimization</field>
+    </record>
+</odoo>

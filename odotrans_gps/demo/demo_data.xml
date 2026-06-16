@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================
+         ODOTRANS GPS — Demo data
+         A depot geofence and a customer geofence around demo locations.
+         ============================================================ -->
+
+    <record id="demo_geofence_depot" model="odotrans.geofence">
+        <field name="name">Central Depot Yard</field>
+        <field name="kind">depot</field>
+        <field name="center_lat">31.4805</field>
+        <field name="center_lng">74.3290</field>
+        <field name="radius_m">300</field>
+    </record>
+
+    <record id="demo_geofence_dha" model="odotrans.geofence">
+        <field name="name">DHA Phase 6 Customer Zone</field>
+        <field name="kind">customer</field>
+        <field name="center_lat">31.4710</field>
+        <field name="center_lng">74.3720</field>
+        <field name="radius_m">200</field>
+    </record>
+</odoo>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_appointment_list" model="ir.ui.view">
+        <field name="name">odotrans.appointment.list</field>
+        <field name="model">odotrans.appointment</field>
+        <field name="arch" type="xml">
+            <list string="Dock Appointments" decoration-success="state == 'done'"
+                  decoration-danger="state == 'no_show'" decoration-muted="state == 'cancelled'">
+                <field name="name"/>
+                <field name="shipment_id"/>
+                <field name="direction"/>
+                <field name="partner_id" optional="show"/>
+                <field name="dock" optional="show"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'done'"
+                       decoration-info="state in ('confirmed','arrived')"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_appointment_form" model="ir.ui.view">
+        <field name="name">odotrans.appointment.form</field>
+        <field name="model">odotrans.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Dock Appointment">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_arrived" type="object" string="Mark Arrived"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_done" type="object" string="Complete"
+                            class="btn-primary" invisible="state != 'arrived'"/>
+                    <button name="action_no_show" type="object" string="No-Show"
+                            invisible="state not in ('confirmed','arrived')"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('done','cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,arrived,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="shipment_id"/>
+                            <field name="direction"/>
+                            <field name="partner_id"/>
+                            <field name="dock"/>
+                        </group>
+                        <group>
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_appointment_calendar" model="ir.ui.view">
+        <field name="name">odotrans.appointment.calendar</field>
+        <field name="model">odotrans.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Dock Appointments" date_start="start_datetime"
+                      date_stop="end_datetime" color="direction" mode="week">
+                <field name="shipment_id"/>
+                <field name="dock"/>
+                <field name="state"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_appointment_search" model="ir.ui.view">
+        <field name="name">odotrans.appointment.search</field>
+        <field name="model">odotrans.appointment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="shipment_id"/>
+                <field name="partner_id"/>
+                <field name="dock"/>
+                <filter name="inbound" string="Inbound" domain="[('direction', '=', 'inbound')]"/>
+                <filter name="outbound" string="Outbound" domain="[('direction', '=', 'outbound')]"/>
+                <separator/>
+                <filter name="upcoming" string="Upcoming"
+                        domain="[('start_datetime', '>=', context_today().strftime('%Y-%m-%d'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                    <filter name="group_direction" string="Direction" context="{'group_by': 'direction'}"/>
+                    <filter name="group_facility" string="Facility" context="{'group_by': 'partner_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_appointment" model="ir.actions.act_window">
+        <field name="name">Dock Appointments</field>
+        <field name="res_model">odotrans.appointment</field>
+        <field name="view_mode">calendar,list,form</field>
+        <field name="search_view_id" ref="view_appointment_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Schedule your first dock appointment</p>
+            <p>Book inbound and outbound dock windows and track arrival status.</p>
+        </field>
+    </record>
+</odoo>

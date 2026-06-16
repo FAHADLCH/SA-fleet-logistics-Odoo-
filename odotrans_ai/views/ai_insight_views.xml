@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ai_insight_list" model="ir.ui.view">
+        <field name="name">odotrans.ai.insight.list</field>
+        <field name="model">odotrans.ai.insight</field>
+        <field name="arch" type="xml">
+            <list string="AI Insights" create="false"
+                  decoration-danger="level == 'high'" decoration-warning="level == 'medium'">
+                <field name="create_date"/>
+                <field name="name"/>
+                <field name="insight_type"/>
+                <field name="score" widget="progressbar"/>
+                <field name="level" widget="badge"
+                       decoration-danger="level == 'high'" decoration-warning="level == 'medium'"
+                       decoration-success="level == 'low'"/>
+                <field name="value_text"/>
+                <field name="provider"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ai_insight_form" model="ir.ui.view">
+        <field name="name">odotrans.ai.insight.form</field>
+        <field name="model">odotrans.ai.insight</field>
+        <field name="arch" type="xml">
+            <form string="AI Insight" create="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="insight_type"/>
+                            <field name="score"/>
+                            <field name="level"/>
+                            <field name="value_text"/>
+                        </group>
+                        <group>
+                            <field name="provider"/>
+                            <field name="res_model"/>
+                            <field name="res_id"/>
+                            <field name="create_date"/>
+                        </group>
+                    </group>
+                    <group string="Reasoning">
+                        <field name="explanation" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ai_insight_search" model="ir.ui.view">
+        <field name="name">odotrans.ai.insight.search</field>
+        <field name="model">odotrans.ai.insight</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <filter name="risk" string="Risk" domain="[('insight_type', '=', 'risk')]"/>
+                <filter name="eta" string="ETA" domain="[('insight_type', '=', 'eta')]"/>
+                <filter name="high" string="High Risk" domain="[('level', '=', 'high')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="g_type" string="Type" context="{'group_by': 'insight_type'}"/>
+                    <filter name="g_level" string="Level" context="{'group_by': 'level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_ai_insight" model="ir.actions.act_window">
+        <field name="name">AI Insights</field>
+        <field name="res_model">odotrans.ai.insight</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_ai_insight_search"/>
+    </record>
+</odoo>

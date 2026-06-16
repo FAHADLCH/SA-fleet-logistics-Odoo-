@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tracking_page" name="ODOTRANS Public Tracking">
+        <t t-call="web.frontend_layout">
+            <t t-set="no_header" t-value="True"/>
+            <t t-set="no_footer" t-value="True"/>
+            <div class="odotrans-track-root"
+                 style="min-height:100vh;background:#0B1F3A;color:#E9EEF5;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;padding:0;margin:0;">
+                <div style="max-width:760px;margin:0 auto;padding:32px 20px 64px;">
+                    <!-- Brand header -->
+                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;">
+                        <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#16C2C2,#0B1F3A);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;">O</div>
+                        <div>
+                            <div style="font-size:18px;font-weight:700;letter-spacing:.5px;">ODOTRANS</div>
+                            <div style="font-size:12px;color:#16C2C2;">Live Shipment Tracking</div>
+                        </div>
+                    </div>
+
+                    <!-- Not found / empty -->
+                    <t t-if="not shipment">
+                        <div style="background:#10294A;border:1px solid #1E3A5F;border-radius:16px;padding:32px;text-align:center;">
+                            <h2 style="margin:0 0 8px;font-size:20px;">Track your shipment</h2>
+                            <t t-if="not_found">
+                                <p style="color:#F4A4A4;margin:12px 0 0;">We couldn't find a shipment for this tracking link.</p>
+                            </t>
+                            <t t-else="">
+                                <p style="color:#9FB3C8;margin:12px 0 0;">Open the secure tracking link shared with you to see live status.</p>
+                            </t>
+                        </div>
+                    </t>
+
+                    <!-- Shipment found -->
+                    <t t-if="shipment">
+                        <div style="background:#10294A;border:1px solid #1E3A5F;border-radius:16px;padding:28px;margin-bottom:20px;">
+                            <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;">
+                                <div>
+                                    <div style="font-size:12px;color:#9FB3C8;text-transform:uppercase;letter-spacing:1px;">Shipment</div>
+                                    <div style="font-size:24px;font-weight:700;"><t t-esc="shipment.name"/></div>
+                                </div>
+                                <div style="text-align:right;">
+                                    <span t-attf-style="display:inline-block;padding:8px 16px;border-radius:999px;font-weight:600;font-size:13px;background:{{ '#16C2C2' if shipment.state == 'delivered' else '#C2410C' if shipment.state == 'exception' else '#1E5AC2' }};color:#fff;">
+                                        <t t-esc="dict(shipment._fields['state'].selection).get(shipment.state)"/>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Progress steps -->
+                            <t t-set="steps" t-value="['confirmed','planned','in_transit','delivered']"/>
+                            <t t-set="order" t-value="{'draft':0,'confirmed':1,'planned':2,'in_transit':3,'exception':3,'delivered':4,'closed':4,'cancelled':0}"/>
+                            <t t-set="current" t-value="order.get(shipment.state, 0)"/>
+                            <div style="display:flex;justify-content:space-between;margin-top:28px;gap:6px;">
+                                <t t-foreach="steps" t-as="step">
+                                    <t t-set="idx" t-value="steps.index(step) + 1"/>
+                                    <div style="flex:1;text-align:center;">
+                                        <div t-attf-style="height:6px;border-radius:3px;background:{{ '#16C2C2' if current >= idx else '#1E3A5F' }};"/>
+                                        <div t-attf-style="margin-top:8px;font-size:11px;color:{{ '#E9EEF5' if current >= idx else '#6B829B' }};text-transform:capitalize;">
+                                            <t t-esc="step.replace('_',' ')"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+
+                        <!-- Key facts -->
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px;">
+                            <div style="background:#10294A;border:1px solid #1E3A5F;border-radius:12px;padding:16px;">
+                                <div style="font-size:11px;color:#9FB3C8;text-transform:uppercase;">Service Level</div>
+                                <div style="font-size:15px;font-weight:600;margin-top:4px;">
+                                    <t t-esc="dict(shipment._fields['service_level'].selection).get(shipment.service_level) or '—'"/>
+                                </div>
+                            </div>
+                            <div style="background:#10294A;border:1px solid #1E3A5F;border-radius:12px;padding:16px;">
+                                <div style="font-size:11px;color:#9FB3C8;text-transform:uppercase;">SLA Due</div>
+                                <div style="font-size:15px;font-weight:600;margin-top:4px;">
+                                    <t t-esc="shipment.sla_due or '—'"/>
+                                </div>
+                            </div>
+                            <div style="background:#10294A;border:1px solid #1E3A5F;border-radius:12px;padding:16px;">
+                                <div style="font-size:11px;color:#9FB3C8;text-transform:uppercase;">Destination</div>
+                                <div style="font-size:15px;font-weight:600;margin-top:4px;">
+                                    <t t-esc="shipment.dest_partner_id.city or shipment.dest_partner_id.name or '—'"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stop timeline -->
+                        <t t-if="shipment.leg_ids">
+                            <div style="background:#10294A;border:1px solid #1E3A5F;border-radius:16px;padding:24px;">
+                                <div style="font-size:14px;font-weight:700;margin-bottom:16px;">Route Progress</div>
+                                <t t-foreach="shipment.leg_ids" t-as="leg">
+                                    <t t-foreach="leg.stop_ids" t-as="stop">
+                                        <div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #16304F;">
+                                            <div t-attf-style="width:12px;height:12px;border-radius:50%;margin-top:4px;flex:none;background:{{ '#16C2C2' if stop.state == 'done' else '#1E5AC2' if stop.state == 'arrived' else '#3B567A' }};"/>
+                                            <div style="flex:1;">
+                                                <div style="font-size:14px;font-weight:600;">
+                                                    <t t-esc="stop.partner_id.name or stop.name"/>
+                                                </div>
+                                                <div style="font-size:12px;color:#9FB3C8;margin-top:2px;">
+                                                    <t t-esc="dict(stop._fields['stop_type'].selection).get(stop.stop_type) or ''"/>
+                                                    <t t-if="stop.planned_eta"> · ETA <t t-esc="stop.planned_eta"/></t>
+                                                    <t t-if="stop.actual_arrival"> · Arrived <t t-esc="stop.actual_arrival"/></t>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+
+                    <!-- Footer -->
+                    <div style="text-align:center;margin-top:32px;color:#6B829B;font-size:12px;">
+                        Powered by <span style="color:#16C2C2;font-weight:600;">ODOTRANS</span> · SA Systems<br/>
+                        <span style="font-size:11px;">Need help? info@sasystems.solutions</span>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

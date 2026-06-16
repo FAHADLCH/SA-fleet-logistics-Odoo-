@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_region_list" model="ir.ui.view">
+        <field name="name">odotrans.region.list</field>
+        <field name="model">odotrans.region</field>
+        <field name="arch" type="xml">
+            <list string="Regions">
+                <field name="sequence" widget="handle"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="measurement_system"/>
+                <field name="compliance_profile"/>
+                <field name="tax_regime"/>
+                <field name="currency_id" optional="show"/>
+                <field name="emission_factor_kg_per_km" optional="hide" string="CO₂ kg/km"/>
+                <field name="active" widget="boolean_toggle" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_region_form" model="ir.ui.view">
+        <field name="name">odotrans.region.form</field>
+        <field name="model">odotrans.region</field>
+        <field name="arch" type="xml">
+            <form string="Region Profile">
+                <sheet>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" placeholder="e.g. North America"/>
+                        </h1>
+                        <div>
+                            <span class="o_form_label">Code: </span>
+                            <field name="code" placeholder="NA" class="oe_inline"/>
+                        </div>
+                    </div>
+                    <group>
+                        <group string="Units &amp; Locale">
+                            <field name="measurement_system"/>
+                            <field name="distance_unit"/>
+                            <field name="temperature_unit"/>
+                            <field name="drive_side"/>
+                        </group>
+                        <group string="Defaults">
+                            <field name="currency_id"/>
+                            <field name="lang_id"/>
+                            <field name="tz"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Compliance" name="compliance">
+                            <group>
+                                <group string="Profile">
+                                    <field name="compliance_profile"/>
+                                    <field name="tax_regime"/>
+                                </group>
+                                <group string="Hours of Service">
+                                    <field name="max_driving_hours_day"/>
+                                    <field name="max_driving_hours_week"/>
+                                    <field name="max_continuous_driving_min"/>
+                                    <field name="required_break_min"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Providers &amp; Sustainability" name="providers">
+                            <group>
+                                <group string="Provider Overrides">
+                                    <field name="map_provider"/>
+                                    <field name="ai_provider"/>
+                                </group>
+                                <group string="Sustainability">
+                                    <field name="emission_factor_kg_per_km"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Features" name="features">
+                            <group>
+                                <group string="Enabled Capabilities">
+                                    <field name="enable_customs"/>
+                                    <field name="enable_hazmat"/>
+                                    <field name="enable_cold_chain"/>
+                                    <field name="enable_eld"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Countries" name="countries">
+                            <field name="country_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_region_search" model="ir.ui.view">
+        <field name="name">odotrans.region.search</field>
+        <field name="model">odotrans.region</field>
+        <field name="arch" type="xml">
+            <search string="Regions">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="country_ids"/>
+                <filter name="metric" string="Metric" domain="[('measurement_system', '=', 'metric')]"/>
+                <filter name="imperial" string="Imperial" domain="[('measurement_system', '=', 'imperial')]"/>
+                <separator/>
+                <filter name="inactive" string="Archived" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_compliance" string="Compliance Profile"
+                            context="{'group_by': 'compliance_profile'}"/>
+                    <filter name="group_tax" string="Tax Regime"
+                            context="{'group_by': 'tax_regime'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_region" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="res_model">odotrans.region</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_region_search"/>
+        <field name="context">{'active_test': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first region profile</p>
+            <p>Region profiles drive units, currency, compliance and tax behaviour
+               across your global operation.</p>
+        </field>
+    </record>
+</odoo>

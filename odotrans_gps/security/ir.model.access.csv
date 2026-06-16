@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_position_user,position.user,model_odotrans_position,odotrans_base.group_odotrans_user,1,0,0,0
+access_position_manager,position.manager,model_odotrans_position,odotrans_base.group_odotrans_manager,1,1,1,1
+access_geofence_user,geofence.user,model_odotrans_geofence,odotrans_base.group_odotrans_user,1,0,0,0
+access_geofence_manager,geofence.manager,model_odotrans_geofence,odotrans_base.group_odotrans_manager,1,1,1,1
+access_geofence_crossing_user,geofence.crossing.user,model_odotrans_geofence_crossing,odotrans_base.group_odotrans_user,1,0,0,0
+access_geofence_crossing_manager,geofence.crossing.manager,model_odotrans_geofence_crossing,odotrans_base.group_odotrans_manager,1,1,1,1

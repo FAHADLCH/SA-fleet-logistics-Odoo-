@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_vehicle_form_odotrans" model="ir.ui.view">
+        <field name="name">fleet.vehicle.form.odotrans</field>
+        <field name="model">fleet.vehicle</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="ODOTRANS" name="odotrans">
+                    <group>
+                        <group string="Operations">
+                            <field name="odotrans_enabled"/>
+                            <field name="odotrans_status"/>
+                            <field name="active_trip_ref" readonly="1"/>
+                        </group>
+                        <group string="Capacity">
+                            <field name="capacity_weight_kg"/>
+                            <field name="capacity_volume_m3"/>
+                            <field name="capacity_pallets"/>
+                        </group>
+                        <group string="Live Position">
+                            <field name="last_lat" readonly="1"/>
+                            <field name="last_lng" readonly="1"/>
+                            <field name="last_position_ts" readonly="1"/>
+                        </group>
+                    </group>
+                    <button name="action_set_available" type="object" string="Set Available"/>
+                    <button name="action_set_maintenance" type="object" string="Send to Maintenance"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_odotrans_vehicle" model="ir.actions.act_window">
+        <field name="name">Vehicles</field>
+        <field name="res_model">fleet.vehicle</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="domain">[('odotrans_enabled','=',True)]</field>
+    </record>
+</odoo>

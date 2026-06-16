@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sub_billing_on_shipment_delivered" model="odotrans.event.subscription">
+        <field name="name">Billing: rate &amp; invoice on shipment delivered</field>
+        <field name="topic">odotrans_shipment.delivered</field>
+        <field name="handler_model">odotrans.charge</field>
+        <field name="handler_method">_odotrans_on_shipment_delivered</field>
+        <field name="channel">root.odotrans.billing</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wave_list" model="ir.ui.view">
+        <field name="name">odotrans.wave.list</field>
+        <field name="model">odotrans.wave</field>
+        <field name="arch" type="xml">
+            <list string="Waves" decoration-success="state == 'done'"
+                  decoration-info="state in ('released','picking')">
+                <field name="name"/>
+                <field name="warehouse_id"/>
+                <field name="wave_type"/>
+                <field name="scheduled_date"/>
+                <field name="shipment_count"/>
+                <field name="task_progress" widget="progressbar"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_wave_form" model="ir.ui.view">
+        <field name="name">odotrans.wave.form</field>
+        <field name="model">odotrans.wave</field>
+        <field name="arch" type="xml">
+            <form string="Wave">
+                <header>
+                    <button name="action_release" type="object" string="Release"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_mark_ready" type="object" string="Mark Ready"
+                            invisible="state != 'picking'"/>
+                    <button name="action_load" type="object" string="Load"
+                            class="oe_highlight" invisible="state != 'ready'"/>
+                    <button name="action_done" type="object" string="Done"
+                            invisible="state != 'loaded'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,released,picking,ready,loaded,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" readonly="1"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="warehouse_id"/>
+                            <field name="dock_id"/>
+                            <field name="wave_type"/>
+                        </group>
+                        <group>
+                            <field name="scheduled_date"/>
+                            <field name="shipment_count"/>
+                            <field name="task_progress" widget="progressbar"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Shipments" name="shipments">
+                            <field name="shipment_ids">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="customer_id"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Pick Tasks" name="tasks">
+                            <field name="task_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="shipment_id"/>
+                                    <field name="bay_id"/>
+                                    <field name="state" widget="badge"/>
+                                    <button name="action_start" type="object" string="Start"
+                                            invisible="state != 'todo'"/>
+                                    <button name="action_done" type="object" string="Done"
+                                            invisible="state != 'in_progress'"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_wave" model="ir.actions.act_window">
+        <field name="name">Waves</field>
+        <field name="res_model">odotrans.wave</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

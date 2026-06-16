@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Event reference sequence -->
+    <record id="seq_odotrans_event" model="ir.sequence">
+        <field name="name">ODOTRANS Domain Event</field>
+        <field name="code">odotrans.event</field>
+        <field name="prefix">EVT/%(year)s/</field>
+        <field name="padding">8</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Dedicated queue_job channels under root.odotrans.*. Each heavy workload
+         runs on its own channel so concurrency limits can be tuned independently
+         and a slow consumer never starves the rest. Configure per-channel
+         capacity in the Odoo server config (channels= option). -->
+    <record id="channel_odotrans" model="queue.job.channel">
+        <field name="name">odotrans</field>
+        <field name="parent_id" ref="queue_job.channel_root"/>
+    </record>
+    <record id="channel_odotrans_events" model="queue.job.channel">
+        <field name="name">events</field>
+        <field name="parent_id" ref="channel_odotrans"/>
+    </record>
+    <record id="channel_odotrans_default" model="queue.job.channel">
+        <field name="name">default</field>
+        <field name="parent_id" ref="channel_odotrans"/>
+    </record>
+    <record id="channel_odotrans_optimization" model="queue.job.channel">
+        <field name="name">optimization</field>
+        <field name="parent_id" ref="channel_odotrans"/>
+    </record>
+    <record id="channel_odotrans_gps" model="queue.job.channel">
+        <field name="name">gps</field>
+        <field name="parent_id" ref="channel_odotrans"/>
+    </record>
+    <record id="channel_odotrans_billing" model="queue.job.channel">
+        <field name="name">billing</field>
+        <field name="parent_id" ref="channel_odotrans"/>
+    </record>
+    <record id="channel_odotrans_settlement" model="queue.job.channel">
+        <field name="name">settlement</field>
+        <field name="parent_id" ref="channel_odotrans"/>
+    </record>
+    <record id="channel_odotrans_notify" model="queue.job.channel">
+        <field name="name">notify</field>
+        <field name="parent_id" ref="channel_odotrans"/>
+    </record>
+</odoo>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_gps" name="Tracking"
+              parent="odotrans_tms.menu_odotrans_root" sequence="30"/>
+    <menuitem id="menu_position" name="Positions"
+              parent="menu_odotrans_gps" action="action_position" sequence="10"/>
+    <menuitem id="menu_geofence" name="Geofences"
+              parent="menu_odotrans_gps" action="action_geofence" sequence="20"/>
+</odoo>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shipment_list" model="ir.ui.view">
+        <field name="name">odotrans.shipment.list</field>
+        <field name="model">odotrans.shipment</field>
+        <field name="arch" type="xml">
+            <list string="Shipments" decoration-danger="is_late" decoration-muted="state in ('closed','cancelled')">
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="service_level"/>
+                <field name="priority" widget="priority"/>
+                <field name="origin_partner_id" optional="show"/>
+                <field name="dest_partner_id" optional="show"/>
+                <field name="sla_due"/>
+                <field name="is_late" optional="hide"/>
+                <field name="state" widget="badge"
+                       decoration-info="state in ('confirmed','planned')"
+                       decoration-warning="state == 'exception'"
+                       decoration-success="state in ('delivered','closed')"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_shipment_form" model="ir.ui.view">
+        <field name="name">odotrans.shipment.form</field>
+        <field name="model">odotrans.shipment</field>
+        <field name="arch" type="xml">
+            <form string="Shipment">
+                <header>
+                    <button name="action_confirm" type="object" string="Confirm"
+                            class="oe_highlight" invisible="state != 'draft'"/>
+                    <button name="action_plan" type="object" string="Mark Planned"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_start_transit" type="object" string="Start Transit"
+                            class="oe_highlight" invisible="state != 'planned'"/>
+                    <button name="action_deliver" type="object" string="Deliver"
+                            invisible="state not in ('in_transit','exception')"/>
+                    <button name="action_close" type="object" string="Close"
+                            invisible="state != 'delivered'"/>
+                    <button name="action_flag_exception" type="object" string="Flag Exception"
+                            invisible="state != 'in_transit'"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="state in ('delivered','closed','cancelled')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,planned,in_transit,delivered,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="service_level"/>
+                            <field name="priority" widget="priority"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="requested_date"/>
+                            <field name="sla_due"/>
+                            <field name="is_late"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Route" name="route">
+                            <group>
+                                <group string="Origin">
+                                    <field name="origin_partner_id"/>
+                                    <field name="origin_lat"/>
+                                    <field name="origin_lng"/>
+                                </group>
+                                <group string="Destination">
+                                    <field name="dest_partner_id"/>
+                                    <field name="dest_lat"/>
+                                    <field name="dest_lng"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Cargo" name="cargo">
+                            <group>
+                                <field name="weight_kg"/>
+                                <field name="volume_m3"/>
+                                <field name="package_count"/>
+                            </group>
+                        </page>
+                        <page string="Legs &amp; Stops" name="legs">
+                            <field name="leg_ids">
+                                <list>
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="name"/>
+                                    <field name="mode"/>
+                                    <field name="trip_ref"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_shipment_search" model="ir.ui.view">
+        <field name="name">odotrans.shipment.search</field>
+        <field name="model">odotrans.shipment</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <filter name="late" string="Late" domain="[('is_late','=',True)]"/>
+                <separator/>
+                <filter name="open" string="Open"
+                        domain="[('state','in',('confirmed','planned','in_transit','exception'))]"/>
+                <filter name="exception" string="Exceptions" domain="[('state','=','exception')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="g_state" string="Status" context="{'group_by':'state'}"/>
+                    <filter name="g_customer" string="Customer" context="{'group_by':'customer_id'}"/>
+                    <filter name="g_service" string="Service Level" context="{'group_by':'service_level'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_shipment" model="ir.actions.act_window">
+        <field name="name">Shipments</field>
+        <field name="res_model">odotrans.shipment</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_open': 1}</field>
+    </record>
+</odoo>

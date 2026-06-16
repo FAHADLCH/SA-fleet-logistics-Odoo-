@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Fan shipment lifecycle events out to registered webhooks. -->
+        <record id="sub_webhook_shipment" model="odotrans.event.subscription">
+            <field name="name">Webhooks: Shipment events</field>
+            <field name="topic">odotrans_shipment.*</field>
+            <field name="handler_model">odotrans.webhook.endpoint</field>
+            <field name="handler_method">_odotrans_on_event</field>
+            <field name="channel">root.odotrans.notify</field>
+        </record>
+
+        <!-- Trip lifecycle events. -->
+        <record id="sub_webhook_trip" model="odotrans.event.subscription">
+            <field name="name">Webhooks: Trip events</field>
+            <field name="topic">odotrans_trip.*</field>
+            <field name="handler_model">odotrans.webhook.endpoint</field>
+            <field name="handler_method">_odotrans_on_event</field>
+            <field name="channel">root.odotrans.notify</field>
+        </record>
+
+        <!-- Proof-of-delivery events. -->
+        <record id="sub_webhook_pod" model="odotrans.event.subscription">
+            <field name="name">Webhooks: POD events</field>
+            <field name="topic">pod.*</field>
+            <field name="handler_model">odotrans.webhook.endpoint</field>
+            <field name="handler_method">_odotrans_on_event</field>
+            <field name="channel">root.odotrans.notify</field>
+        </record>
+
+        <!-- Geofence events from telematics. -->
+        <record id="sub_webhook_geofence" model="odotrans.event.subscription">
+            <field name="name">Webhooks: Geofence events</field>
+            <field name="topic">geofence.*</field>
+            <field name="handler_model">odotrans.webhook.endpoint</field>
+            <field name="handler_method">_odotrans_on_event</field>
+            <field name="channel">root.odotrans.notify</field>
+        </record>
+    </data>
+</odoo>

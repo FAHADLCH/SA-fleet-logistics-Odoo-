@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Dedicated AI queue channel so model inference never blocks operational
+         work and its concurrency can be tuned independently. -->
+    <record id="channel_odotrans_ai" model="queue.job.channel">
+        <field name="name">ai</field>
+        <field name="parent_id" ref="odotrans_base.channel_odotrans"/>
+    </record>
+</odoo>

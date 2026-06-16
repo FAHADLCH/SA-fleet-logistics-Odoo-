@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="480" viewBox="0 0 1200 480" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SA Fleet and Logistics by SA Systems — AI-native 3PL, fleet and transport platform for Odoo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="480" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a0a0c"/>
+      <stop offset="0.55" stop-color="#141417"/>
+      <stop offset="1" stop-color="#1d0608"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.82" cy="0.18" r="0.9">
+      <stop offset="0" stop-color="#e11d2a" stop-opacity="0.42"/>
+      <stop offset="0.4" stop-color="#e11d2a" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#e11d2a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="redline" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff3b48"/>
+      <stop offset="1" stop-color="#c20f1b"/>
+    </linearGradient>
+    <linearGradient id="route" x1="120" y1="400" x2="1080" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff3b48" stop-opacity="0.15"/>
+      <stop offset="0.5" stop-color="#ff3b48" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ff7a82" stop-opacity="0.25"/>
+    </linearGradient>
+  </defs>
+
+  <!-- backdrop -->
+  <rect width="1200" height="480" rx="18" fill="url(#bg)"/>
+  <rect width="1200" height="480" rx="18" fill="url(#glow)"/>
+
+  <!-- faint honeycomb field (brand motif) -->
+  <g opacity="0.07" stroke="#ffffff" stroke-width="2" fill="none">
+    <path d="M70 60 l34 -20 l34 20 l0 40 l-34 20 l-34 -20 z"/>
+    <path d="M138 100 l34 -20 l34 20 l0 40 l-34 20 l-34 -20 z"/>
+    <path d="M70 140 l34 -20 l34 20 l0 40 l-34 20 l-34 -20 z"/>
+    <path d="M950 300 l40 -23 l40 23 l0 46 l-40 23 l-40 -23 z"/>
+    <path d="M1030 346 l40 -23 l40 23 l0 46 l-40 23 l-40 -23 z"/>
+    <path d="M1030 254 l40 -23 l40 23 l0 46 l-40 23 l-40 -23 z"/>
+  </g>
+
+  <!-- abstract route line with stops -->
+  <path d="M110 392 C 300 392, 320 250, 470 250 S 720 250, 820 180 S 1010 140, 1090 140"
+        stroke="url(#route)" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="2 14"/>
+  <g fill="#ff3b48">
+    <circle cx="110" cy="392" r="7"/>
+    <circle cx="470" cy="250" r="6"/>
+    <circle cx="820" cy="180" r="6"/>
+  </g>
+  <circle cx="1090" cy="140" r="9" fill="none" stroke="#ff7a82" stroke-width="3"/>
+  <circle cx="1090" cy="140" r="4" fill="#ff7a82"/>
+
+  <!-- SA Systems honeycomb glyph (hero, brand-red) -->
+  <g transform="translate(96,150)" stroke="url(#redline)" stroke-width="9" stroke-linejoin="round" fill="none">
+    <path d="M0 26 l30 -18 l30 18 l0 40 l-30 18 l-30 -18 z"/>
+    <path d="M60 60 l30 -18 l30 18 l0 40 l-30 18 l-30 -18 z"/>
+    <path d="M0 94 l30 -18 l30 18 l0 40 l-30 18 l-30 -18 z"/>
+    <path d="M120 26 l30 -18 l30 18 l0 40 l-30 18 l-30 -18 z"/>
+  </g>
+
+  <!-- Wordmark + tagline -->
+  <text x="232" y="196" font-family="Helvetica, Arial, sans-serif" font-size="60" font-weight="700" fill="#ffffff" letter-spacing="-1.5">SA Fleet &amp; Logistics</text>
+  <text x="234" y="240" font-family="Helvetica, Arial, sans-serif" font-size="23" font-weight="400" fill="#c9c9d2" letter-spacing="0.2">AI-native 3PL, fleet &amp; transport — built on Odoo</text>
+
+  <!-- pill row -->
+  <g font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700">
+    <g transform="translate(234,286)">
+      <rect width="206" height="40" rx="20" fill="none" stroke="#ff3b48" stroke-width="1.6"/>
+      <text x="20" y="26" fill="#ff7a82">Order &gt; Dispatch &gt; POD</text>
+    </g>
+    <g transform="translate(452,286)">
+      <rect width="150" height="40" rx="20" fill="none" stroke="#3f8f5b" stroke-width="1.6"/>
+      <text x="18" y="26" fill="#7fd49b">Multi-currency</text>
+    </g>
+    <g transform="translate(614,286)">
+      <rect width="168" height="40" rx="20" fill="none" stroke="#5b6472" stroke-width="1.6"/>
+      <text x="17" y="26" fill="#c9c9d2">Region-aware + AI</text>
+    </g>
+  </g>
+
+  <!-- footer brand -->
+  <g transform="translate(234,360)" font-family="Helvetica, Arial, sans-serif">
+    <text x="0" y="16" font-size="14" fill="#8a8a93" letter-spacing="2">BY</text>
+    <g transform="translate(34,-2)" stroke="#e11d2a" stroke-width="3.4" stroke-linejoin="round" fill="none">
+      <path d="M0 6 l9 -5 l9 5 l0 11 l-9 5 l-9 -5 z"/>
+      <path d="M18 16 l9 -5 l9 5 l0 11 l-9 5 l-9 -5 z"/>
+      <path d="M36 6 l9 -5 l9 5 l0 11 l-9 5 l-9 -5 z"/>
+    </g>
+    <text x="92" y="20" font-size="19" font-weight="700" fill="#ffffff">SA Systems</text>
+  </g>
+
+  <!-- subtle border -->
+  <rect x="0.5" y="0.5" width="1199" height="479" rx="18" fill="none" stroke="#2a2a30" stroke-width="1"/>
+</svg>

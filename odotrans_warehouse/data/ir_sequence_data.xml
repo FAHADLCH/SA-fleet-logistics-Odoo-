@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_odotrans_wave" model="ir.sequence">
+        <field name="name">ODOTRANS Wave</field>
+        <field name="code">odotrans.wave</field>
+        <field name="prefix">WAV/%(year)s/</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

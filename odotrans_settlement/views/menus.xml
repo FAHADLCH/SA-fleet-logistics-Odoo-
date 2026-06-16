@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_settlement" name="Settlement"
+              parent="odotrans_tms.menu_odotrans_root" sequence="45"
+              groups="group_odotrans_settlement_manager"/>
+    <menuitem id="menu_settlement_run" name="Settlement Runs"
+              parent="menu_odotrans_settlement" action="action_settlement_run" sequence="10"/>
+    <menuitem id="menu_pay_statement" name="Pay Statements"
+              parent="menu_odotrans_settlement" action="action_pay_statement" sequence="20"/>
+    <menuitem id="menu_pay_rule" name="Pay Rules"
+              parent="menu_odotrans_settlement" action="action_pay_rule" sequence="30"/>
+</odoo>

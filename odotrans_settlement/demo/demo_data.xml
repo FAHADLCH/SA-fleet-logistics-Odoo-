@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================
+         ODOTRANS Settlement — Demo data
+         A fallback driver pay rule plus a driver-specific rule.
+         ============================================================ -->
+
+    <record id="demo_pay_rule_default" model="odotrans.pay.rule">
+        <field name="name">Standard Driver Pay (Fallback)</field>
+        <field name="sequence">20</field>
+        <field name="payee_type">driver</field>
+        <field name="per_trip">2500</field>
+        <field name="per_km">18</field>
+        <field name="per_stop">150</field>
+        <field name="min_amount">3000</field>
+    </record>
+
+    <record id="demo_pay_rule_bilal" model="odotrans.pay.rule">
+        <field name="name">Bilal — Senior Driver Rate</field>
+        <field name="sequence">10</field>
+        <field name="payee_type">driver</field>
+        <field name="driver_id" ref="odotrans_fleet.demo_driver_bilal"/>
+        <field name="per_trip">3200</field>
+        <field name="per_km">22</field>
+        <field name="per_stop">175</field>
+        <field name="min_amount">4000</field>
+    </record>
+</odoo>

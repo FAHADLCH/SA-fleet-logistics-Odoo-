@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================
+         ODOTRANS TMS — Demo data
+         Customers, locations and shipments across the lifecycle so the
+         end-to-end flow can be explored immediately after install.
+         ============================================================ -->
+
+    <!-- Customers -->
+    <record id="demo_customer_acme" model="res.partner">
+        <field name="name">ACME Manufacturing</field>
+        <field name="is_company" eval="True"/>
+        <field name="email">orders@acme-demo.example</field>
+        <field name="city">Lahore</field>
+    </record>
+    <record id="demo_customer_globex" model="res.partner">
+        <field name="name">Globex Retail</field>
+        <field name="is_company" eval="True"/>
+        <field name="email">logistics@globex-demo.example</field>
+        <field name="city">Karachi</field>
+    </record>
+
+    <!-- Locations -->
+    <record id="demo_depot_central" model="res.partner">
+        <field name="name">ODOTRANS Central Depot</field>
+        <field name="street">Industrial Estate</field>
+        <field name="city">Lahore</field>
+    </record>
+    <record id="demo_loc_dha" model="res.partner">
+        <field name="name">DHA Phase 6 Hub</field>
+        <field name="street">158-CCA DHA Phase 6</field>
+        <field name="city">Lahore</field>
+    </record>
+    <record id="demo_loc_johar" model="res.partner">
+        <field name="name">Johar Town Outlet</field>
+        <field name="city">Lahore</field>
+    </record>
+
+    <!-- Shipments across the lifecycle -->
+    <record id="demo_ship_draft" model="odotrans.shipment">
+        <field name="customer_id" ref="demo_customer_acme"/>
+        <field name="service_level">economy</field>
+        <field name="priority">0</field>
+        <field name="state">draft</field>
+        <field name="origin_partner_id" ref="demo_depot_central"/>
+        <field name="dest_partner_id" ref="demo_loc_johar"/>
+        <field name="origin_lat">31.4805</field>
+        <field name="origin_lng">74.3290</field>
+        <field name="dest_lat">31.4697</field>
+        <field name="dest_lng">74.2728</field>
+        <field name="weight_kg">320</field>
+        <field name="volume_m3">2.4</field>
+        <field name="package_count">8</field>
+    </record>
+
+    <record id="demo_ship_confirmed" model="odotrans.shipment">
+        <field name="customer_id" ref="demo_customer_globex"/>
+        <field name="service_level">standard</field>
+        <field name="priority">1</field>
+        <field name="state">confirmed</field>
+        <field name="origin_partner_id" ref="demo_depot_central"/>
+        <field name="dest_partner_id" ref="demo_loc_dha"/>
+        <field name="origin_lat">31.4805</field>
+        <field name="origin_lng">74.3290</field>
+        <field name="dest_lat">31.4710</field>
+        <field name="dest_lng">74.3720</field>
+        <field name="weight_kg">540</field>
+        <field name="volume_m3">3.8</field>
+        <field name="package_count">14</field>
+    </record>
+
+    <record id="demo_ship_transit" model="odotrans.shipment">
+        <field name="customer_id" ref="demo_customer_acme"/>
+        <field name="service_level">express</field>
+        <field name="priority">2</field>
+        <field name="state">in_transit</field>
+        <field name="origin_partner_id" ref="demo_depot_central"/>
+        <field name="dest_partner_id" ref="demo_loc_johar"/>
+        <field name="origin_lat">31.4805</field>
+        <field name="origin_lng">74.3290</field>
+        <field name="dest_lat">31.4697</field>
+        <field name="dest_lng">74.2728</field>
+        <field name="weight_kg">120</field>
+        <field name="volume_m3">0.9</field>
+        <field name="package_count">3</field>
+    </record>
+
+    <record id="demo_ship_delivered" model="odotrans.shipment">
+        <field name="customer_id" ref="demo_customer_globex"/>
+        <field name="service_level">standard</field>
+        <field name="priority">0</field>
+        <field name="state">delivered</field>
+        <field name="origin_partner_id" ref="demo_depot_central"/>
+        <field name="dest_partner_id" ref="demo_loc_dha"/>
+        <field name="origin_lat">31.4805</field>
+        <field name="origin_lng">74.3290</field>
+        <field name="dest_lat">31.4710</field>
+        <field name="dest_lng">74.3720</field>
+        <field name="weight_kg">760</field>
+        <field name="volume_m3">5.1</field>
+        <field name="package_count">22</field>
+    </record>
+
+    <record id="demo_ship_exception" model="odotrans.shipment">
+        <field name="customer_id" ref="demo_customer_acme"/>
+        <field name="service_level">same_day</field>
+        <field name="priority">2</field>
+        <field name="state">exception</field>
+        <field name="origin_partner_id" ref="demo_depot_central"/>
+        <field name="dest_partner_id" ref="demo_loc_johar"/>
+        <field name="origin_lat">31.4805</field>
+        <field name="origin_lng">74.3290</field>
+        <field name="dest_lat">31.4697</field>
+        <field name="dest_lng">74.2728</field>
+        <field name="weight_kg">95</field>
+        <field name="volume_m3">0.6</field>
+        <field name="package_count">2</field>
+    </record>
+</odoo>

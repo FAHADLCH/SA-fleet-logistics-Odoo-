@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_odotrans_shipment" model="ir.sequence">
+        <field name="name">ODOTRANS Shipment</field>
+        <field name="code">odotrans.shipment</field>
+        <field name="prefix">SHP/%(year)s/</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <!-- Subscribe shipment to delivery-proof events. The POD context emits
+         'pod.delivered'; the shipment reacts by closing its transit state. -->
+    <record id="sub_shipment_on_pod_delivered" model="odotrans.event.subscription">
+        <field name="name">Shipment ← POD delivered</field>
+        <field name="topic">pod.delivered</field>
+        <field name="handler_model">odotrans.shipment</field>
+        <field name="handler_method">_odotrans_on_pod_delivered</field>
+        <field name="channel">root.odotrans.events</field>
+    </record>
+</odoo>

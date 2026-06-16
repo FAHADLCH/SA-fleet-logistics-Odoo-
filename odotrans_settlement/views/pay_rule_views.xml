@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pay_rule_list" model="ir.ui.view">
+        <field name="name">odotrans.pay.rule.list</field>
+        <field name="model">odotrans.pay.rule</field>
+        <field name="arch" type="xml">
+            <list string="Pay Rules" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="payee_type"/>
+                <field name="driver_id"/>
+                <field name="per_trip"/>
+                <field name="per_km"/>
+                <field name="per_stop"/>
+                <field name="per_kg"/>
+                <field name="min_amount"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_pay_rule" model="ir.actions.act_window">
+        <field name="name">Pay Rules</field>
+        <field name="res_model">odotrans.pay.rule</field>
+        <field name="view_mode">list</field>
+    </record>
+</odoo>

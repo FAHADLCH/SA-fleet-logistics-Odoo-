@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_edi_list" model="ir.ui.view">
+        <field name="name">odotrans.edi.document.list</field>
+        <field name="model">odotrans.edi.document</field>
+        <field name="arch" type="xml">
+            <list string="EDI Documents" decoration-success="state == 'acknowledged'"
+                  decoration-danger="state == 'error'" decoration-info="state == 'generated'">
+                <field name="name"/>
+                <field name="edi_type"/>
+                <field name="direction"/>
+                <field name="shipment_id" optional="show"/>
+                <field name="partner_id" optional="show"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'acknowledged'"
+                       decoration-info="state in ('generated','sent')"/>
+                <field name="create_date" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_edi_form" model="ir.ui.view">
+        <field name="name">odotrans.edi.document.form</field>
+        <field name="model">odotrans.edi.document</field>
+        <field name="arch" type="xml">
+            <form string="EDI Document">
+                <header>
+                    <button name="action_generate" type="object" string="Generate"
+                            class="btn-primary" invisible="state not in ('draft','error')"/>
+                    <button name="action_mark_sent" type="object" string="Mark Sent"
+                            invisible="state != 'generated'"/>
+                    <button name="action_acknowledge" type="object" string="Acknowledge"
+                            invisible="state not in ('sent','received')"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,generated,sent,acknowledged"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="edi_type"/>
+                            <field name="direction"/>
+                            <field name="control_number" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="shipment_id"/>
+                            <field name="partner_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Payload" name="payload">
+                            <field name="payload" widget="text"
+                                   placeholder="Generate to populate the EDI envelope..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_edi_search" model="ir.ui.view">
+        <field name="name">odotrans.edi.document.search</field>
+        <field name="model">odotrans.edi.document</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="shipment_id"/>
+                <field name="partner_id"/>
+                <filter name="inbound" string="Inbound" domain="[('direction', '=', 'in')]"/>
+                <filter name="outbound" string="Outbound" domain="[('direction', '=', 'out')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_type" string="Transaction Set" context="{'group_by': 'edi_type'}"/>
+                    <filter name="group_state" string="Status" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_edi" model="ir.actions.act_window">
+        <field name="name">EDI Documents</field>
+        <field name="res_model">odotrans.edi.document</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_edi_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first EDI document</p>
+            <p>Generate and track X12 204, 214, 210 and 990 transactions.</p>
+        </field>
+    </record>
+</odoo>

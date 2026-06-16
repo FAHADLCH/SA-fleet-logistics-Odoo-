@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_odotrans_ai" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.odotrans.ai</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="ODOTRANS AI" string="ODOTRANS AI" name="odotrans_ai"
+                     logo="/odotrans_tms/static/description/icon.png">
+                    <block title="AI Provider" id="odotrans_ai_provider_block">
+                        <setting string="Provider" help="Engine used for AI inference.">
+                            <field name="odotrans_ai_provider"/>
+                        </setting>
+                        <setting string="OpenAI" invisible="odotrans_ai_provider != 'openai'">
+                            <div class="content-group">
+                                <label for="odotrans_openai_api_key" string="API Key"/>
+                                <field name="odotrans_openai_api_key" password="True" placeholder="sk-..."/>
+                                <label for="odotrans_openai_model" string="Model"/>
+                                <field name="odotrans_openai_model" placeholder="gpt-4o-mini"/>
+                            </div>
+                        </setting>
+                        <setting string="Azure OpenAI" invisible="odotrans_ai_provider != 'azure_openai'">
+                            <div class="content-group">
+                                <label for="odotrans_azure_endpoint" string="Endpoint"/>
+                                <field name="odotrans_azure_endpoint" placeholder="https://xxx.openai.azure.com"/>
+                                <label for="odotrans_azure_api_key" string="API Key"/>
+                                <field name="odotrans_azure_api_key" password="True"/>
+                                <label for="odotrans_azure_deployment" string="Deployment"/>
+                                <field name="odotrans_azure_deployment"/>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="AI Features" id="odotrans_ai_features_block">
+                        <setting string="Predictive ETA" help="Estimate transit time and arrival.">
+                            <field name="odotrans_ai_enable_eta"/>
+                        </setting>
+                        <setting string="Delay Risk Scoring" help="Score shipments for exception risk.">
+                            <field name="odotrans_ai_enable_risk"/>
+                        </setting>
+                        <setting string="Dynamic Pricing" help="Suggest demand-aware prices.">
+                            <field name="odotrans_ai_enable_pricing"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

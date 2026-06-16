@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================
+         ODOTRANS Billing — Demo data
+         A default rate card with freight + fuel surcharge lines.
+         ============================================================ -->
+
+    <record id="demo_rate_card_standard" model="odotrans.rate.card">
+        <field name="name">Standard National Tariff</field>
+        <field name="sequence">20</field>
+        <field name="service_level">any</field>
+    </record>
+
+    <record id="demo_rate_line_freight" model="odotrans.rate.card.line">
+        <field name="card_id" ref="demo_rate_card_standard"/>
+        <field name="sequence">10</field>
+        <field name="name">Base Freight</field>
+        <field name="charge_type">freight</field>
+        <field name="base_amount">500</field>
+        <field name="per_km">35</field>
+        <field name="per_kg">2.5</field>
+        <field name="min_amount">1500</field>
+    </record>
+    <record id="demo_rate_line_fuel" model="odotrans.rate.card.line">
+        <field name="card_id" ref="demo_rate_card_standard"/>
+        <field name="sequence">20</field>
+        <field name="name">Fuel Surcharge</field>
+        <field name="charge_type">fuel</field>
+        <field name="per_km">8</field>
+    </record>
+
+    <record id="demo_rate_card_express" model="odotrans.rate.card">
+        <field name="name">Express Premium Tariff</field>
+        <field name="sequence">10</field>
+        <field name="service_level">express</field>
+    </record>
+    <record id="demo_rate_line_express" model="odotrans.rate.card.line">
+        <field name="card_id" ref="demo_rate_card_express"/>
+        <field name="sequence">10</field>
+        <field name="name">Express Freight</field>
+        <field name="charge_type">freight</field>
+        <field name="base_amount">1200</field>
+        <field name="per_km">55</field>
+        <field name="per_kg">4.0</field>
+        <field name="min_amount">3000</field>
+    </record>
+</odoo>

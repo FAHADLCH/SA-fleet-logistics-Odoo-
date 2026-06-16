@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_odotrans_settlement_run" model="ir.sequence">
+        <field name="name">ODOTRANS Settlement Run</field>
+        <field name="code">odotrans.settlement.run</field>
+        <field name="prefix">STL/%(year)s/</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_odotrans_settlement_accrual" model="ir.sequence">
+        <field name="name">ODOTRANS Settlement Accrual</field>
+        <field name="code">odotrans.settlement.accrual</field>
+        <field name="prefix">ACR/%(year)s/</field>
+        <field name="padding">8</field>
+        <field name="company_id" eval="False"/>
+    </record>
+    <record id="seq_odotrans_pay_statement" model="ir.sequence">
+        <field name="name">ODOTRANS Pay Statement</field>
+        <field name="code">odotrans.pay.statement</field>
+        <field name="prefix">PAY/%(year)s/</field>
+        <field name="padding">6</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

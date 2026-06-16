@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pm_plan_list" model="ir.ui.view">
+        <field name="name">odotrans.pm.plan.list</field>
+        <field name="model">odotrans.pm.plan</field>
+        <field name="arch" type="xml">
+            <list string="PM Plans">
+                <field name="name"/>
+                <field name="vehicle_id"/>
+                <field name="service_type"/>
+                <field name="interval_km"/>
+                <field name="interval_days"/>
+                <field name="next_due_odometer"/>
+                <field name="next_due_date"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_pm_plan_form" model="ir.ui.view">
+        <field name="name">odotrans.pm.plan.form</field>
+        <field name="model">odotrans.pm.plan</field>
+        <field name="arch" type="xml">
+            <form string="PM Plan">
+                <sheet>
+                    <div class="oe_title"><h1><field name="name" placeholder="e.g. Oil change - every 10000km"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="vehicle_id"/>
+                            <field name="service_type"/>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="interval_km"/>
+                            <field name="interval_days"/>
+                        </group>
+                    </group>
+                    <group string="Last Service">
+                        <group>
+                            <field name="last_service_odometer"/>
+                            <field name="last_service_date"/>
+                        </group>
+                        <group>
+                            <field name="next_due_odometer"/>
+                            <field name="next_due_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pm_plan" model="ir.actions.act_window">
+        <field name="name">PM Plans</field>
+        <field name="res_model">odotrans.pm.plan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

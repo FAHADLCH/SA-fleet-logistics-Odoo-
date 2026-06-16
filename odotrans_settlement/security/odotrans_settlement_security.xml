@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_odotrans_settlement_manager" model="res.groups">
+        <field name="name">ODOTRANS Settlement Manager</field>
+        <field name="category_id" ref="odotrans_base.module_category_odotrans"/>
+        <field name="implied_ids" eval="[(4, ref('odotrans_dispatch.group_odotrans_dispatcher'))]"/>
+    </record>
+
+    <record id="rule_odotrans_settlement_run_company" model="ir.rule">
+        <field name="name">ODOTRANS Settlement Run: multi-company</field>
+        <field name="model_id" ref="model_odotrans_settlement_run"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True"/>
+    </record>
+
+    <record id="rule_odotrans_accrual_company" model="ir.rule">
+        <field name="name">ODOTRANS Settlement Accrual: multi-company</field>
+        <field name="model_id" ref="model_odotrans_settlement_accrual"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True"/>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Dispatch reacts to shipment confirmation. -->
+    <record id="sub_dispatch_on_shipment_confirmed" model="odotrans.event.subscription">
+        <field name="name">Dispatch ← Shipment confirmed</field>
+        <field name="topic">odotrans_shipment.confirmed</field>
+        <field name="handler_model">odotrans.trip</field>
+        <field name="handler_method">_odotrans_on_shipment_confirmed</field>
+        <field name="channel">root.odotrans.events</field>
+    </record>
+
+    <!-- Vehicle pool reacts to maintenance taking a vehicle down. -->
+    <record id="sub_vehicle_on_down" model="odotrans.event.subscription">
+        <field name="name">Vehicle ← Maintenance down</field>
+        <field name="topic">maintenance.vehicle_down</field>
+        <field name="handler_model">fleet.vehicle</field>
+        <field name="handler_method">_odotrans_on_vehicle_down</field>
+        <field name="channel">root.odotrans.events</field>
+    </record>
+</odoo>

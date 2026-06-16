@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pay_rule_disp,pay.rule.disp,model_odotrans_pay_rule,odotrans_dispatch.group_odotrans_dispatcher,1,0,0,0
+access_pay_rule_mgr,pay.rule.mgr,model_odotrans_pay_rule,group_odotrans_settlement_manager,1,1,1,1
+access_settlement_accrual_disp,settlement.accrual.disp,model_odotrans_settlement_accrual,odotrans_dispatch.group_odotrans_dispatcher,1,0,0,0
+access_settlement_accrual_mgr,settlement.accrual.mgr,model_odotrans_settlement_accrual,group_odotrans_settlement_manager,1,1,1,1
+access_settlement_run_disp,settlement.run.disp,model_odotrans_settlement_run,odotrans_dispatch.group_odotrans_dispatcher,1,0,0,0
+access_settlement_run_mgr,settlement.run.mgr,model_odotrans_settlement_run,group_odotrans_settlement_manager,1,1,1,1
+access_pay_statement_disp,pay.statement.disp,model_odotrans_pay_statement,odotrans_dispatch.group_odotrans_dispatcher,1,0,0,0
+access_pay_statement_mgr,pay.statement.mgr,model_odotrans_pay_statement,group_odotrans_settlement_manager,1,1,1,1
+access_pay_statement_line_disp,pay.statement.line.disp,model_odotrans_pay_statement_line,odotrans_dispatch.group_odotrans_dispatcher,1,0,0,0
+access_pay_statement_line_mgr,pay.statement.line.mgr,model_odotrans_pay_statement_line,group_odotrans_settlement_manager,1,1,1,1

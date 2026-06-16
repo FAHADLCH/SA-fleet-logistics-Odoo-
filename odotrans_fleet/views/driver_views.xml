@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_driver_list" model="ir.ui.view">
+        <field name="name">odotrans.driver.list</field>
+        <field name="model">odotrans.driver</field>
+        <field name="arch" type="xml">
+            <list string="Drivers" decoration-danger="not license_valid">
+                <field name="name"/>
+                <field name="phone"/>
+                <field name="license_number"/>
+                <field name="license_expiry"/>
+                <field name="license_valid"/>
+                <field name="status" widget="badge"/>
+                <field name="default_vehicle_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_driver_form" model="ir.ui.view">
+        <field name="name">odotrans.driver.form</field>
+        <field name="model">odotrans.driver</field>
+        <field name="arch" type="xml">
+            <form string="Driver">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="employee_id"/>
+                            <field name="partner_id"/>
+                            <field name="phone"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="license_number"/>
+                            <field name="license_expiry"/>
+                            <field name="license_valid"/>
+                            <field name="status"/>
+                            <field name="default_vehicle_id"/>
+                            <field name="active_trip_ref" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_driver" model="ir.actions.act_window">
+        <field name="name">Drivers</field>
+        <field name="res_model">odotrans.driver</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>
