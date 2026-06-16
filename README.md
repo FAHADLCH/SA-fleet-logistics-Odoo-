@@ -9,8 +9,8 @@
 ## What this is
 
 A complete, country-agnostic transport and logistics operating system for Odoo,
-delivered as one umbrella app (`sa_fleet_logistics`) that bundles **16
-integrated modules** covering the entire chain — from order capture to cash:
+delivered as **one self-contained app** (`sa_fleet_logistics`) that covers the
+entire chain — from order capture to cash:
 
 **Order → AI plan → Dispatch → In Transit → Proof of Delivery → Billing → Settlement.**
 
@@ -62,29 +62,33 @@ Copy the repository folders into a path on your Odoo `--addons-path`, then:
 ```
 
 Or from the UI: **Apps → Update Apps List → search "SA Fleet & Logistics" →
-Install** (installs all 16 modules).
+Install** (a single app installs the entire platform).
 
 ## Repository layout
 
 ```
 .
-├── sa_fleet_logistics/      # umbrella app (install this)
-├── odotrans_base/           # platform core
-├── odotrans_tms/            # menus, settings, shared models
-├── odotrans_fleet/          # vehicles, trailers, drivers
-├── odotrans_dispatch/       # trips, manifests, dispatch board
-├── odotrans_route/          # route optimization
-├── odotrans_gps/            # live tracking & geofencing
-├── odotrans_pod/            # proof of delivery
-├── odotrans_driver_api/     # JSON driver API
-├── odotrans_warehouse/      # docks & cross-dock
-├── odotrans_billing/        # rate cards & customer billing
-├── odotrans_settlement/     # carrier & driver settlement
-├── odotrans_maintenance/    # preventive maintenance
-├── odotrans_ai/             # AI ETA, price & assistant
-├── odotrans_region/         # region profiles
-├── odotrans_advanced/       # hazmat, cold-chain, customs, portal
-├── odotrans_integration/    # EDI, webhooks, connectors
+├── sa_fleet_logistics/       # the single installable app (install this)
+│   ├── __manifest__.py       # paid listing, depends only on standard Odoo + queue_job
+│   ├── static/description/   # store banner, icon & product page
+│   └── parts/                # internal capability packages (not separate apps)
+│       ├── odotrans_base/        # platform core
+│       ├── odotrans_tms/         # menus, settings, shipment lifecycle
+│       ├── odotrans_fleet/       # vehicles, trailers, drivers
+│       ├── odotrans_dispatch/    # trips, manifests, dispatch board
+│       ├── odotrans_route/       # route optimization
+│       ├── odotrans_gps/         # live tracking & geofencing
+│       ├── odotrans_pod/         # proof of delivery
+│       ├── odotrans_driver_api/  # JSON driver API
+│       ├── odotrans_warehouse/   # docks & cross-dock
+│       ├── odotrans_billing/     # rate cards & customer billing
+│       ├── odotrans_settlement/  # carrier & driver settlement
+│       ├── odotrans_maintenance/ # preventive maintenance
+│       ├── odotrans_ai/          # AI ETA, price & assistant
+│       ├── odotrans_region/      # region profiles
+│       ├── odotrans_advanced/    # hazmat, cold-chain, customs, portal
+│       └── odotrans_integration/ # EDI, webhooks, connectors
+├── deploy/                   # Docker test stack
 ├── docker-compose.yml
 ├── odoo.conf.example
 └── start-test.sh

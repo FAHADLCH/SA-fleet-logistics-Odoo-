@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Boot a local Odoo 18 Community instance with SA Fleet & Logistics installed.
-# Installing the umbrella module pulls in all 16 platform modules.
+# Installing the single sa_fleet_logistics app delivers the whole platform.
 #
 # Open in your browser when ready:
 #     http://localhost:8069
