@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_odotrans_connector_user,odotrans.connector.user,model_odotrans_integration_connector,sa_fleet_logistics.group_odotrans_user,1,0,0,0
+access_odotrans_connector_manager,odotrans.connector.manager,model_odotrans_integration_connector,group_odotrans_integration_manager,1,1,1,1
+access_odotrans_webhook_user,odotrans.webhook.user,model_odotrans_webhook_endpoint,sa_fleet_logistics.group_odotrans_user,1,0,0,0
+access_odotrans_webhook_manager,odotrans.webhook.manager,model_odotrans_webhook_endpoint,group_odotrans_integration_manager,1,1,1,1
+access_odotrans_edi_user,odotrans.edi.user,model_odotrans_edi_document,sa_fleet_logistics.group_odotrans_user,1,1,1,0
+access_odotrans_edi_manager,odotrans.edi.manager,model_odotrans_edi_document,group_odotrans_integration_manager,1,1,1,1

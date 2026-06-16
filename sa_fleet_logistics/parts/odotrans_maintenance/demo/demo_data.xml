@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================
+         ODOTRANS Maintenance — Demo data
+         Preventive maintenance plans tied to the demo fleet.
+         ============================================================ -->
+
+    <record id="demo_pm_oil_truck1" model="odotrans.pm.plan">
+        <field name="name">Oil Change — ODT-1001</field>
+        <field name="vehicle_id" ref="sa_fleet_logistics.demo_vehicle_truck1"/>
+        <field name="service_type">oil</field>
+        <field name="interval_km">15000</field>
+        <field name="interval_days">180</field>
+        <field name="last_service_odometer">42000</field>
+        <field name="last_service_date" eval="(DateTime.today() - timedelta(days=120)).strftime('%Y-%m-%d')"/>
+    </record>
+
+    <record id="demo_pm_inspection_van1" model="odotrans.pm.plan">
+        <field name="name">Safety Inspection — ODT-2001</field>
+        <field name="vehicle_id" ref="sa_fleet_logistics.demo_vehicle_van1"/>
+        <field name="service_type">inspection</field>
+        <field name="interval_km">0</field>
+        <field name="interval_days">90</field>
+        <field name="last_service_date" eval="(DateTime.today() - timedelta(days=85)).strftime('%Y-%m-%d')"/>
+    </record>
+</odoo>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <menuitem id="menu_odotrans_dispatch" name="Dispatch"
-              parent="odotrans_tms.menu_odotrans_root" sequence="15"/>
-    <menuitem id="menu_trip" name="Trips"
-              parent="menu_odotrans_dispatch" action="action_trip" sequence="10"/>
-    <menuitem id="menu_manifest" name="Manifests"
-              parent="menu_odotrans_dispatch" action="action_manifest" sequence="20"/>
-</odoo>

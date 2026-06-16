@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_optimize_wave_form" model="ir.ui.view">
+        <field name="name">odotrans.optimize.wave.form</field>
+        <field name="model">odotrans.optimize.wave</field>
+        <field name="arch" type="xml">
+            <form string="Optimize Wave">
+                <group>
+                    <field name="trip_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="action_optimize_wave" type="object"
+                            string="Optimize" class="oe_highlight"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_optimize_wave" model="ir.actions.act_window">
+        <field name="name">Optimize Wave</field>
+        <field name="res_model">odotrans.optimize.wave</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sa_fleet_logistics.model_odotrans_trip"/>
+        <field name="binding_view_types">list,form</field>
+    </record>
+</odoo>

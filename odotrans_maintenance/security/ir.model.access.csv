@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_pm_plan_user,pm.plan.user,model_odotrans_pm_plan,odotrans_base.group_odotrans_user,1,0,0,0
-access_pm_plan_mgr,pm.plan.mgr,model_odotrans_pm_plan,group_odotrans_maintenance_manager,1,1,1,1
-access_work_order_user,work.order.user,model_odotrans_work_order,odotrans_base.group_odotrans_user,1,0,0,0
-access_work_order_mgr,work.order.mgr,model_odotrans_work_order,group_odotrans_maintenance_manager,1,1,1,1
-access_defect_driver,defect.driver,model_odotrans_defect,odotrans_fleet.group_odotrans_driver,1,1,1,0
-access_defect_mgr,defect.mgr,model_odotrans_defect,group_odotrans_maintenance_manager,1,1,1,1

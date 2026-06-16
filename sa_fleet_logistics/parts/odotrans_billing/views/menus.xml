@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_billing" name="Billing"
+              parent="sa_fleet_logistics.menu_odotrans_root" sequence="40"
+              groups="group_odotrans_billing_manager"/>
+    <menuitem id="menu_charge" name="Charges"
+              parent="menu_odotrans_billing" action="action_charge" sequence="10"/>
+    <menuitem id="menu_rate_card" name="Rate Cards"
+              parent="menu_odotrans_billing" action="action_rate_card" sequence="20"/>
+</odoo>

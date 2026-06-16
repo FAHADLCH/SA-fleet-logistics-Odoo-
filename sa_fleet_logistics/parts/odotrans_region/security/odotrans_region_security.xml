@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_odotrans_region_manager" model="res.groups">
+        <field name="name">ODOTRANS Region Manager</field>
+        <field name="category_id" ref="sa_fleet_logistics.module_category_odotrans"/>
+        <field name="implied_ids" eval="[(4, ref('sa_fleet_logistics.group_odotrans_user'))]"/>
+    </record>
+</odoo>

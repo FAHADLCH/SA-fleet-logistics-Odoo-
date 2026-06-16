@@ -1,9 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_dock_user,dock.user,model_odotrans_dock,odotrans_base.group_odotrans_user,1,1,1,0
-access_dock_manager,dock.manager,model_odotrans_dock,odotrans_base.group_odotrans_manager,1,1,1,1
-access_bay_user,bay.user,model_odotrans_bay,odotrans_base.group_odotrans_user,1,1,1,0
-access_bay_manager,bay.manager,model_odotrans_bay,odotrans_base.group_odotrans_manager,1,1,1,1
-access_wave_user,wave.user,model_odotrans_wave,odotrans_base.group_odotrans_user,1,1,1,0
-access_wave_manager,wave.manager,model_odotrans_wave,odotrans_base.group_odotrans_manager,1,1,1,1
-access_pick_task_user,pick.task.user,model_odotrans_pick_task,odotrans_base.group_odotrans_user,1,1,1,0
-access_pick_task_manager,pick.task.manager,model_odotrans_pick_task,odotrans_base.group_odotrans_manager,1,1,1,1

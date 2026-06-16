@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_route" name="Route Optimization"
+              parent="sa_fleet_logistics.menu_odotrans_root" sequence="18"/>
+    <menuitem id="menu_optrun" name="Optimization Runs"
+              parent="menu_odotrans_route" action="action_optrun" sequence="10"/>
+</odoo>

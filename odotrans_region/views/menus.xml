@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <menuitem id="menu_odotrans_region"
-              name="Regions"
-              parent="odotrans_tms.menu_odotrans_config"
-              action="action_region"
-              sequence="40"
-              groups="odotrans_base.group_odotrans_user"/>
-</odoo>

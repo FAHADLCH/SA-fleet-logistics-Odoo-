@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_maintenance" name="Maintenance"
+              parent="sa_fleet_logistics.menu_odotrans_root" sequence="50"/>
+    <menuitem id="menu_work_order" name="Work Orders"
+              parent="menu_odotrans_maintenance" action="action_work_order" sequence="10"/>
+    <menuitem id="menu_defect" name="Defects"
+              parent="menu_odotrans_maintenance" action="action_defect" sequence="20"/>
+    <menuitem id="menu_pm_plan" name="PM Plans"
+              parent="menu_odotrans_maintenance" action="action_pm_plan" sequence="30"/>
+</odoo>

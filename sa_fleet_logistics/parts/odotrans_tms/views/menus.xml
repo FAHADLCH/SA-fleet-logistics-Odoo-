@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_root" name="ODOTRANS" sequence="10"
+              web_icon="odotrans_tms,static/description/icon.png"/>
+
+    <menuitem id="menu_odotrans_operations" name="Operations"
+              parent="menu_odotrans_root" sequence="10"/>
+
+    <menuitem id="menu_shipment" name="Shipments"
+              parent="menu_odotrans_operations" action="action_shipment" sequence="10"/>
+    <menuitem id="menu_stop" name="Stops"
+              parent="menu_odotrans_operations" action="action_stop" sequence="20"/>
+
+    <menuitem id="menu_odotrans_config" name="Configuration"
+              parent="menu_odotrans_root" sequence="900"
+              groups="sa_fleet_logistics.group_odotrans_manager"/>
+</odoo>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Telematics -->
+        <record id="demo_conn_samsara" model="odotrans.integration.connector">
+            <field name="name">Samsara Fleet</field>
+            <field name="code">samsara</field>
+            <field name="category">telematics</field>
+            <field name="provider">Samsara</field>
+            <field name="auth_type">bearer</field>
+            <field name="base_url">https://api.samsara.com</field>
+        </record>
+
+        <record id="demo_conn_geotab" model="odotrans.integration.connector">
+            <field name="name">Geotab Telematics</field>
+            <field name="code">geotab</field>
+            <field name="category">telematics</field>
+            <field name="provider">Geotab</field>
+            <field name="auth_type">basic</field>
+            <field name="base_url">https://my.geotab.com/apiv1</field>
+        </record>
+
+        <!-- E-commerce -->
+        <record id="demo_conn_shopify" model="odotrans.integration.connector">
+            <field name="name">Shopify Orders</field>
+            <field name="code">shopify</field>
+            <field name="category">ecommerce</field>
+            <field name="provider">Shopify</field>
+            <field name="auth_type">api_key</field>
+            <field name="base_url">https://your-store.myshopify.com/admin/api/2024-01</field>
+        </record>
+
+        <!-- Payment -->
+        <record id="demo_conn_stripe" model="odotrans.integration.connector">
+            <field name="name">Stripe Payments</field>
+            <field name="code">stripe</field>
+            <field name="category">payment</field>
+            <field name="provider">Stripe</field>
+            <field name="auth_type">bearer</field>
+            <field name="base_url">https://api.stripe.com/v1</field>
+        </record>
+
+        <!-- Accounting -->
+        <record id="demo_conn_quickbooks" model="odotrans.integration.connector">
+            <field name="name">QuickBooks Online</field>
+            <field name="code">quickbooks</field>
+            <field name="category">accounting</field>
+            <field name="provider">Intuit QuickBooks</field>
+            <field name="auth_type">oauth2</field>
+            <field name="base_url">https://quickbooks.api.intuit.com/v3</field>
+        </record>
+
+        <!-- Visibility -->
+        <record id="demo_conn_project44" model="odotrans.integration.connector">
+            <field name="name">project44 Visibility</field>
+            <field name="code">project44</field>
+            <field name="category">visibility</field>
+            <field name="provider">project44</field>
+            <field name="auth_type">oauth2</field>
+            <field name="base_url">https://na12.api.project44.com/api/v4</field>
+        </record>
+
+        <!-- Webhooks -->
+        <record id="demo_webhook_visibility" model="odotrans.webhook.endpoint">
+            <field name="name">Customer Visibility Feed</field>
+            <field name="url">https://hooks.example.com/odotrans/shipments</field>
+            <field name="topic_filter">odotrans_shipment.*</field>
+            <field name="secret">whsec_demo_4f9a2b</field>
+        </record>
+
+        <record id="demo_webhook_pod" model="odotrans.webhook.endpoint">
+            <field name="name">POD Notifier</field>
+            <field name="url">https://hooks.example.com/odotrans/pod</field>
+            <field name="topic_filter">pod.*</field>
+            <field name="secret">whsec_demo_pod_71c3</field>
+        </record>
+
+        <!-- EDI sample -->
+        <record id="demo_edi_214" model="odotrans.edi.document">
+            <field name="edi_type">214</field>
+            <field name="direction">out</field>
+            <field name="shipment_id" ref="sa_fleet_logistics.demo_ship_transit"/>
+            <field name="state">draft</field>
+        </record>
+    </data>
+</odoo>

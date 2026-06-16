@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="channel_odotrans_integration" model="queue.job.channel">
+            <field name="name">integration</field>
+            <field name="parent_id" ref="sa_fleet_logistics.channel_odotrans"/>
+        </record>
+
+        <record id="seq_odotrans_edi" model="ir.sequence">
+            <field name="name">ODOTRANS EDI Document</field>
+            <field name="code">odotrans.edi.document</field>
+            <field name="prefix">EDI/%(year)s/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

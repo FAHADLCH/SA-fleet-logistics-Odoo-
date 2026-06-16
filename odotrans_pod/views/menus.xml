@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <menuitem id="menu_odotrans_pod" name="Delivery Proof"
-              parent="odotrans_tms.menu_odotrans_root" sequence="40"/>
-    <menuitem id="menu_pod" name="Proof of Delivery"
-              parent="menu_odotrans_pod" action="action_pod" sequence="10"/>
-    <menuitem id="menu_exception" name="Exceptions"
-              parent="menu_odotrans_pod" action="action_exception" sequence="20"/>
-</odoo>

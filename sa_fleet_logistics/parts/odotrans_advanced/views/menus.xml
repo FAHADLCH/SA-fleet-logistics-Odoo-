@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_appointment"
+              name="Dock Appointments"
+              parent="sa_fleet_logistics.menu_odotrans_operations"
+              action="action_appointment"
+              sequence="30"
+              groups="sa_fleet_logistics.group_odotrans_tms_user"/>
+</odoo>

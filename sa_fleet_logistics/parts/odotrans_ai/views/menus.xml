@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_odotrans_ai" name="AI Intelligence"
+              parent="sa_fleet_logistics.menu_odotrans_root" sequence="15"
+              groups="group_odotrans_ai_manager"/>
+    <menuitem id="menu_ai_assistant" name="AI Assistant"
+              parent="menu_odotrans_ai" action="action_ai_assistant" sequence="10"/>
+    <menuitem id="menu_ai_insight" name="AI Insights"
+              parent="menu_odotrans_ai" action="action_ai_insight" sequence="20"/>
+</odoo>

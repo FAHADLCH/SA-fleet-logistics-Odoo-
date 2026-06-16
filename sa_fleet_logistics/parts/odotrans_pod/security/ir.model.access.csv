@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pod_user,pod.user,model_odotrans_pod,sa_fleet_logistics.group_odotrans_user,1,1,1,0
+access_pod_manager,pod.manager,model_odotrans_pod,sa_fleet_logistics.group_odotrans_manager,1,1,1,1
+access_pod_driver,pod.driver,model_odotrans_pod,sa_fleet_logistics.group_odotrans_driver,1,1,1,0
+access_exception_user,exception.user,model_odotrans_exception,sa_fleet_logistics.group_odotrans_user,1,1,1,0
+access_exception_manager,exception.manager,model_odotrans_exception,sa_fleet_logistics.group_odotrans_manager,1,1,1,1
+access_exception_driver,exception.driver,model_odotrans_exception,sa_fleet_logistics.group_odotrans_driver,1,1,1,0

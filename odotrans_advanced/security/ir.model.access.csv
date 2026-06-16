@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_odotrans_appointment_user,odotrans.appointment.user,model_odotrans_appointment,odotrans_tms.group_odotrans_tms_user,1,1,1,0
-access_odotrans_appointment_manager,odotrans.appointment.manager,model_odotrans_appointment,odotrans_tms.group_odotrans_tms_manager,1,1,1,1

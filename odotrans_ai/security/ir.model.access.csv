@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_odotrans_ai_insight_user,odotrans.ai.insight.user,model_odotrans_ai_insight,odotrans_tms.group_odotrans_tms_user,1,0,0,0
-access_odotrans_ai_insight_mgr,odotrans.ai.insight.mgr,model_odotrans_ai_insight,group_odotrans_ai_manager,1,1,1,1
-access_odotrans_ai_assistant_user,odotrans.ai.assistant.user,model_odotrans_ai_assistant,odotrans_tms.group_odotrans_tms_user,1,1,1,1

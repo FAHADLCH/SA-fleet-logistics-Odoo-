@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_odotrans_billing_manager" model="res.groups">
+        <field name="name">ODOTRANS Billing Manager</field>
+        <field name="category_id" ref="sa_fleet_logistics.module_category_odotrans"/>
+        <field name="implied_ids" eval="[(4, ref('sa_fleet_logistics.group_odotrans_tms_user'))]"/>
+    </record>
+
+    <record id="rule_odotrans_charge_company" model="ir.rule">
+        <field name="name">ODOTRANS Charge: multi-company</field>
+        <field name="model_id" ref="model_odotrans_charge"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True"/>
+    </record>
+
+    <record id="rule_odotrans_rate_card_company" model="ir.rule">
+        <field name="name">ODOTRANS Rate Card: multi-company</field>
+        <field name="model_id" ref="model_odotrans_rate_card"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="global" eval="True"/>
+    </record>
+</odoo>

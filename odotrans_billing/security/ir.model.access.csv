@@ -1,7 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_odotrans_rate_card_user,odotrans.rate.card.user,model_odotrans_rate_card,odotrans_tms.group_odotrans_tms_user,1,0,0,0
-access_odotrans_rate_card_mgr,odotrans.rate.card.mgr,model_odotrans_rate_card,group_odotrans_billing_manager,1,1,1,1
-access_odotrans_rate_card_line_user,odotrans.rate.card.line.user,model_odotrans_rate_card_line,odotrans_tms.group_odotrans_tms_user,1,0,0,0
-access_odotrans_rate_card_line_mgr,odotrans.rate.card.line.mgr,model_odotrans_rate_card_line,group_odotrans_billing_manager,1,1,1,1
-access_odotrans_charge_user,odotrans.charge.user,model_odotrans_charge,odotrans_tms.group_odotrans_tms_user,1,0,0,0
-access_odotrans_charge_mgr,odotrans.charge.mgr,model_odotrans_charge,group_odotrans_billing_manager,1,1,1,1

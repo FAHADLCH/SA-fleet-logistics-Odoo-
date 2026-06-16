@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_optrun_dispatcher,optrun.dispatcher,model_odotrans_optimization_run,sa_fleet_logistics.group_odotrans_dispatcher,1,1,1,1
+access_optrun_user,optrun.user,model_odotrans_optimization_run,sa_fleet_logistics.group_odotrans_user,1,0,0,0
+access_optimize_wave,optimize.wave,model_odotrans_optimize_wave,sa_fleet_logistics.group_odotrans_dispatcher,1,1,1,1
